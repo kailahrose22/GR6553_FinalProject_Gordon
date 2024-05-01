@@ -1,7 +1,7 @@
 # Clear Air Turbulence Analysis Script
 
 ## Project Despription
-For my final project, I wanted to analyze a case study of Severe Clear Air Turbulence (CAT) that occurred on March 1, 2023, using figures created through a Python Code. 
+For my final project, I wanted to analyze a case study of Severe Clear Air Turbulence (CAT) that occurred on March 1, 2023, using figures created through a Python Code. The data files used in this project could not be uploaded to GitHub due to them being too large so I have provided links to the data.
 The script found on this page works to create many figures for analysis using High-Resolution Rapid Refresh (HRRR) model data. The data was downloaded from [HRRR Data](https://noaa-hrrr-bdp-pds.s3.amazonaws.com/index.html). 
 The script also utilizes NEXRAD Level II Radar data which can be found at [NEXRAD Data](https://s3.amazonaws.com/noaa-nexrad-level2/index.html).
 The figures created for analysis in this project visualize many meteorological variables including 500mb Geopotential Height and Wind Magnitude, 500mb Temperature, Turbulent Kinetic Energy (TKE), Skew-T, Richardson Number, 850-500mb Vertical Wind Shear, and Base Reflectivity.
