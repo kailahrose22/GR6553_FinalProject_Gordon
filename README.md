@@ -26,6 +26,14 @@ pip install glob
 1. Download the necessary forecast data file from the HRRR link above (hrrr.t00z.wrfprsf00.grib2) or another date/time if wanted
 2. Run the first section of the script labeled Map 1
    - The script will pull the needed values, calculate wind magnitude, and plot a base map with overlayed filled contour for wind speeds in knots, wind barbs, isoheight lines, and a point location of the turbulence.
+```bash
+map=plt.contourf(lons,lats,mag*1.944,bounds, cmap=plt.cm.afmhot_r,transform=ccrs.PlateCarree())
+cbar = plt.colorbar (location='bottom')
+cbar.set_label ('knots')
+h=plt.contour (lons, lats, hgt, np.arange(np.min(hgt), np.max(hgt),40), linestyles='-', linewidths=2, colors='black', transform=ccrs.PlateCarree())
+plt.barbs(lons[::80,::80],lats[::80,::80],uw[::80,::80],vw[::80,::80],transform=ccrs.PlateCarree())
+plt.plot(-89.45,35.06, marker='*', color='white', markeredgecolor='black', linewidth=4, markersize = 15, transform = ccrs.PlateCarree())
+```
 3. This piece of the script will generate a plot of 500 mb Geopotential Heights and Winds over the Continental United States (CONUS) and be saved as '3.02.HeightWindCONUS.png'.
 ### REGIONAL MAP
 1. Using the same data file as used in Map 1 follow the second section of code titled Map 2
@@ -39,3 +47,26 @@ ax.set_extent([-92.40,-86.40,38.06,32.06])
 ### Note
 - The script assumes that the forecast data file is located in the same directory as the script so make sure to adjust the file path accordingly
 - Other model data files can be used in this script as long as the file is specified
+
+
+##Section 2: 500 mb Temperature
+###CONUS MAP
+1. Using the same data from Section 1 select the temperature data for 50000 hPa and convert the data from Kelvin to Celsius
+```bash
+tmpC = tmp-273.15
+```
+2. Run the portion of the script labeled Map 3 to plot 500 mb Temperature in a filled contour over CONUS and save it as ('3.02.TemperatureCONUS.png')
+```bash
+map=plt.contourf(lons,lats,tmpC,bounds, cmap=plt.cm.turbo,transform=ccrs.PlateCarree())
+cbar = plt.colorbar (location='bottom')
+cbar.set_label ('Celsius')
+plt.plot(-89.40,35.06, marker='*', color='white', markeredgecolor='black', linewidth=4, markersize = 15, transform = ccrs.PlateCarree())
+```
+###REGIONAL MAP
+1. Using the same data file as used in Map 3 follow the second section of code titled Map 2
+2. Map 4 is the same script as Map 3 with varying central coordinates and extent
+```bash
+proj=ccrs.LambertConformal(central_longitude=-89.40,central_latitude=35.06)
+ax.set_extent([-92.40,-86.40,38.06,32.06])
+```
+3. This piece will generate the same plot as the one above but it will be zoomed in to view the region in question and be saved as '3.02.HeightWindRegion.png'
